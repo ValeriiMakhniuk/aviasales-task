@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TicketList from './components/TicketList/TicketList';
+import ViewFilter from './components/ViewFilter/ViewFilter';
+import StopFilter from './components/StopFilter/StopFilter';
+import styles from './App.module.css';
+import { ReactComponent as Logo } from './img/logo.svg';
 
-function App() {
+export default function App({ dataState, getTickets }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.app}>
+      <Logo className={styles.logo}/>
+      <div className={styles.inner}>
+        <StopFilter />
+        <div>
+          <ViewFilter />
+          <TicketList />
+        </div>
+      </div>
     </div>
   );
-}
-
-export default App;
+};
