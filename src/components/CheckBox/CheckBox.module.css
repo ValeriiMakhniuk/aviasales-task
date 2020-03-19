@@ -14,14 +14,14 @@
     -moz-appearance: none;
 }
 
-.checkInput:checked + .check__box {
-    background-image: url('../src/img/checked.svg');
+.checkInput:checked + .checkBox {
+    background-image: url('../../img/checked.svg');
 }
 
 .checkBox {
     position: absolute;
     width: 20px;
     height: 20px;
-    background-image: url('../src/img/off.svg');
+    background-image: url('../../img/off.svg');
     margin-left: -30px;
 }

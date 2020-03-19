@@ -11,7 +11,7 @@ export function CheckBox({ type = 'checkbox', name, checked = false, onChange, l
         onChange={onChange}
         className={styles.checkInput}
       />
-      <span className={styles.CheckBox}></span>
+      <span className={styles.checkBox}></span>
       {label}
     </label>
   );
