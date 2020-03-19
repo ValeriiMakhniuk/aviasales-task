@@ -20,7 +20,7 @@ function loaderRender(num) {
 };
 
 function TicketList({ tickets, dataState, getTickets }) {
-  useEffect(() => { getTickets() }, [getTickets]);
+  useEffect(() => void getTickets(), [getTickets]);
   console.log('LIST RENDER');
   return (
     <>
