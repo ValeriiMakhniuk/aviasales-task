@@ -12,8 +12,8 @@
 
 ## Запуск
 
-    git clone https://github.com/ValeriiMakhniuk/Aviasales_task.git
-    cd Aviasales_task
+    git clone https://github.com/ValeriiMakhniuk/aviasales-task.git
+    cd aviasales-task
     npm install
     npm start
 
