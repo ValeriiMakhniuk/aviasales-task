@@ -1,4 +1,7 @@
 import React from 'react';
+import { dateFormat } from '../../utils/formatTime';
+import addMinutes from 'date-fns/addMinutes';
+
 import styles from './TicketInfoRow.module.css';
 
 function wordend(number, text_forms){
@@ -16,24 +19,6 @@ function calculateDuration(m) {
   return [hours, minutes];
 };
 
-function formatTime(h, m, separator) {
-  if (h < 10) {
-    if (m < 10) {
-      if (separator !== ':') return `0${h}ч 0${m}м`;
-      return `0${h}:0${m}`;
-    }
-    if (separator !== ':') return `0${h}ч ${m}м`;
-    return `0${h}:${m}`;
-  }
-  if (m < 10) {
-    if (separator !== ':') return `${h}ч 0${m}м`;
-    return `${h}:0${m}`;
-  }
-  if (separator !== ':') return `${h}ч ${m}м`;
-  return `${h}:${m}`;
-};
-
-
 export function TicketInfoRow({ segment }) {
   const {
     origin,
@@ -44,20 +29,19 @@ export function TicketInfoRow({ segment }) {
   } = segment;
   const fdate = new Date(date);
   const ddate = new Date(fdate);
-  ddate.setUTCMinutes(fdate.getUTCMinutes() + duration);
-  const flighStart = formatTime(fdate.getUTCHours(), fdate.getUTCMinutes(), ':');
-  const flightEnd = formatTime(ddate.getUTCHours(), ddate.getUTCMinutes(), ':');
   const [hours, minutes] = calculateDuration(duration);
+  const durationDate = new Date(2020, 0, 1, hours, minutes);
+  const destinationDate = addMinutes(ddate, duration);
   const forms = ['пересадка', 'пересадки', 'пересадок'];
   return (
     <div className={styles.row}>
       <div className={styles.cell}>
         <p className={styles.desc}>{origin} - {destination}</p>
-        <p className={styles.info}>{flighStart} - {flightEnd}</p>
+        <p className={styles.info}>{dateFormat(fdate, ':')} - {dateFormat(destinationDate, ':')}</p>
       </div>
       <div className={styles.cell}>
         <p className={styles.desc}>В пути</p>
-        <p className={styles.info}>{formatTime(hours, minutes)}</p>
+        <p className={styles.info}>{dateFormat(durationDate)}</p>
       </div>
       <div className={styles.cell}>
         <p className={styles.desc}>{stops.length} {wordend(stops.length, forms)}</p>
